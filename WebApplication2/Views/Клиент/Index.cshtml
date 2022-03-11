@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebApplication2.Models.Клиент>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Работа с клиентской базой</h2>
+
+<p>
+    @Html.ActionLink("Добавить клиента", "Create")
+</p>
+<p>
+
+</p>
+@using (Html.BeginForm())
+{
+<p>
+    Найти по названию организации: <input type="text" name="SearchStringName" id="search" />
+    <input type="submit" value="Поиск" />
+</p>
+
+<p>
+    Найти по телефону:<input type="text" name="SearchStringPhone" id="search" />
+    <input type="submit" value="Поиск" />
+</p>
+
+<p>
+    Найти по почте:<input type="text" name="SearchStringMail" id="search" />
+    <input type="submit" value="Поиск" />
+</p>
+<p>
+    Найти по городу:<input type="text" name="SearchStringCity" id="search" />
+    <input type="submit" value="Поиск" />
+</p>
+<p>
+    Найти по адресу:<input type="text" name="SearchStringAddress" id="search" />
+    <input type="submit" value="Поиск" />
+</p>
+<p>
+    Найти по контактному лицу:<input type="text" name="SearchStringContact" id="search" />
+    <input type="submit" value="Поиск" />
+</p>
+    
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Название организации", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Город", "Index", new { sortOrder = ViewBag.CitySortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Адрес", "Index", new { sortOrder = ViewBag.AddressSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Телефон", "Index", new { sortOrder = ViewBag.PhoneSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Почта", "Index", new { sortOrder = ViewBag.MailSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Контактное лицо", "Index", new { sortOrder = ViewBag.ContactSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Название_организации)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Город)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Адрес)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Телефон)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Почта)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Контактное_лицо)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID_клиента }) |
+                @Html.ActionLink("Просмотр деталей", "Details", new { id = item.ID_клиента }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID_клиента })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,50 @@
+﻿@model WebApplication2.Models.Материал_объекта
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Материал объекта</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.Единицы_измерения, "Единицы измерения")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Единицы_измерения)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Количество_материала, "Количество материала")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество_материала)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Материал.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Материал.Наименование)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Объект.Наименование_заказа, "Наименование заказа")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Объект.Наименование_заказа)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Обратно", "Index", new { usedId = ViewBag.usedIParm })
+</p>

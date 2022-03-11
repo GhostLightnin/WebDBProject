@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication2.Models.Этап_выполнения>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Работа с этапами выполнения</h2>
+
+<p>
+    @Html.ActionLink("Добавить новый этап выполнения", "Create", new { usedId = ViewBag.usedIParm }, "")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Название_этапа)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Объект.Наименование_заказа)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Дата)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Название_этапа)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Объект.Наименование_заказа)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id1 = item.ID_этапа, id2 = item.ID_объекта }) |
+            @Html.ActionLink("Просмотр деталей", "Details", new { id1 = item.ID_этапа, id2 = item.ID_объекта }) |
+            @Html.ActionLink("Удалить", "Delete", new {  id1 = item.ID_этапа, id2 = item.ID_объекта })
+        </td>
+    </tr>
+}
+
+</table>

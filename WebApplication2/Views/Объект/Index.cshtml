@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebApplication2.Models.Объект>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Работа с текущими объектами</h2>
+
+<p>
+    @Html.ActionLink("Добавить объект", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Найти по наименованию: <input type="text" name="SearchString" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+    <p>
+        Найти по дате принятия заказа:<input type="date" name="SearchStringDate" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+    <p>
+        Найти по виду работ:<input type="text" name="SearchStringType" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по сроку выполнения работ:<input type="text" name="SearchStringTime" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по статусу заказа:<input type="text" name="SearchStringStatus" id="search" list="status_list" />
+        <datalist id="status_list">
+            <option>Завершён</option>
+            <option>Выполняется</option>
+            <option>оформлен</option>
+        </datalist>
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по наименованию организации клиента:<input type="text" name="SearchStringOrgName" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Наименование заказа", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Дата принятия заказа", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Срок выполнения работ", "Index", new { sortOrder = ViewBag.TimeSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Вид работ", "Index", new { sortOrder = ViewBag.TypeSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Статус заказа", "Index", new { sortOrder = ViewBag.StatusSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Название организации клиента", "Index", new { sortOrder = ViewBag.OrgNameSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Наименование_заказа)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_принятия_заказа)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Срок_выполнения_работ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Вид_работ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Статус_заказа)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Клиент.Название_организации)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID_объекта }) |
+                @Html.ActionLink("Просмотр деталей", "Details", new { id = item.ID_объекта }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID_объекта })
+            </td>
+        </tr>
+    }
+
+</table>

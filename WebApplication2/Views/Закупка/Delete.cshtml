@@ -1,0 +1,48 @@
+﻿@model WebApplication2.Models.Закупка
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены что хотите удалить эту закупку?</h3>
+<div>
+    <h4>Закупка</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Общая цена</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Общая_цена)
+        </dd>
+
+        <dt>
+            <label>Дата поставки</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_закупки)
+        </dd>
+
+        <dt>
+            <label>Дата закупки</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_поставки)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Обратно", "Index")
+        </div>
+    }
+</div>

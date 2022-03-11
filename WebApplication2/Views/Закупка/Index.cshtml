@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WebApplication2.Models.Закупка>
+
+@{
+    ViewBag.Title = "Закупки";
+    
+}
+
+<link href="~/Content/ui_1.10.4_themes_smoothness_jquery-ui.css" rel="stylesheet" />
+@section Scripts{
+<script src=" ~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src=" ~/Scripts/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.getdate').each(function () {
+            $(this).datepicker();
+        });
+    });
+    function copyText() {
+        document.getElementById("output").value = document.getElementById("input").value;
+    }
+    function toggleTableView() {
+        var x = document.getElementById("DBTable");
+        var y = x.style.width;
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+            x.style.width = y
+        }
+    }
+    function toggleTableViewAllSearches() {
+        var x = document.getElementById("DBTable");
+        var y = x.style.width;
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        }
+    }
+
+    </script>
+}
+<h2>Управление закупками</h2>
+<p>
+    @Html.ActionLink("Создать новую закупку", "Create")   
+</p>
+<p>
+    @Html.ActionLink("Обновить цены в таблице закупок в соответствии с составами закупок", "UpdateTableZak")
+</p>
+@using (Html.BeginForm())
+{
+    <p></p>
+    <p>
+        Найти по номеру закупки: <input type="number" name="SearchStringId" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по цене: <input type="number" name="SearchString" id="search" />
+        <input type="submit" value="Поиск"/>
+    </p>
+    <p>
+        Найти по дате закупки: <input type="date" name="SearchStringDate"  id="datezsearch"/>
+        <input type="submit" value="Поиск"/>
+    </p>
+    <p>
+
+        Найти по дате поставки: <input type="date" name="SearchStringDate1" id="datepsearch" />
+        <input type="submit" value="Поиск"/>
+    </p>
+}
+<table class="table" id="DBTable">
+    <tr>
+        <th>
+            @Html.ActionLink("ID Закупки", "Index", new {sortOrder =  ViewBag.IDSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Общая цена", "Index", new { sortOrder = ViewBag.PriceSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Дата закупки", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Дата поставки", "Index", new { sortOrder = ViewBag.DatePostSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_закупки)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Общая_цена)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_закупки)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_поставки)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID_закупки }) |
+                @Html.ActionLink("Просмотреть детали", "Details", new { id = item.ID_закупки }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID_закупки })
+            </td>
+        </tr>
+    }
+
+</table>

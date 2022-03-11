@@ -1,0 +1,42 @@
+﻿@model WebApplication2.Models.Работа_на_объекте
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Работа на объекте</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.Выполняемая_работа, "Выполняемая работа")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Выполняемая_работа)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Объект.Наименование_заказа, "Наименование заказа")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Объект.Наименование_заказа)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Сотрудник.ФИО, "ФИО Сотрудника")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сотрудник.ФИО)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Обратно", "Index", new { usedId = ViewBag.usedIParm })
+</p>

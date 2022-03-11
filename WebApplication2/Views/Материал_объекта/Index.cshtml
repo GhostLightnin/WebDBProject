@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication2.Models.Материал_объекта>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Работа с материалам объекта</h2>
+
+<p>
+    @Html.ActionLink("Добавить новый", "Create", new { usedId = ViewBag.usedIParm })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Единицы_измерения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Количество_материала)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Материал.Наименование)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Объект.Наименование_заказа)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Единицы_измерения)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Количество_материала)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Материал.Наименование)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Объект.Наименование_заказа)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id1 = item.ID_объекта, id2 = item.ID_материала }) |
+            @Html.ActionLink("Просмотреть детали", "Details", new { id1 = item.ID_объекта, id2 = item.ID_материала }) |
+            @Html.ActionLink("Удалить", "Delete", new { id1 = item.ID_объекта, id2 = item.ID_материала })
+        </td>
+    </tr>
+}
+
+</table>

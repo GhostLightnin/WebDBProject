@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication2.Models.Состав_закупки>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Работа с составами закупок</h2>
+
+<p>
+    @Html.ActionLink("Добвить новый", "Create", new { usedId = ViewBag.usedIParm})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Количество)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Цена)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Закупка.ID_закупки)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Материал.Наименование)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Количество)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Цена)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Закупка.ID_закупки)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Материал.Наименование)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id1 = item.ID_закупки, id2 = item.ID_материала }) |
+            @Html.ActionLink("Просмотреть детали", "Details", new { id1 = item.ID_закупки, id2 = item.ID_материала }) |
+            @Html.ActionLink("Удалить", "Delete", new { id1 = item.ID_закупки, id2 = item.ID_материала })
+        </td>
+    </tr>
+}
+
+</table>

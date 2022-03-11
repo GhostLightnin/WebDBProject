@@ -1,0 +1,72 @@
+﻿@model WebApplication2.Models.Объект
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этот объект?</h3>
+<div>
+    <h4>Объект</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Наименование заказа</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование_заказа)
+        </dd>
+
+        <dt>
+            <label>Дата принятия заказа</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_принятия_заказа)
+        </dd>
+
+        <dt>
+            <label>Срок выполнени работ</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Срок_выполнения_работ)
+        </dd>
+
+        <dt>
+            <label>Вид работ</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Вид_работ)
+        </dd>
+
+        <dt>
+            <label>Статус заказа</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Статус_заказа)
+        </dd>
+
+        <dt>
+            <label>Название организации клиента</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Клиент.Название_организации)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Обратно", "Index")
+        </div>
+    }
+</div>

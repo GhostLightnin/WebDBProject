@@ -1,0 +1,193 @@
+﻿@model WebApplication2.Models.Объект
+
+@{
+    ViewBag.Title = "Details";
+}
+<script>
+    function toggleTableView1() {
+        var x = document.getElementById("DBTable1");
+        var y = x.style.width;
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+            x.style.width = y
+        }
+    }
+    function toggleTableView2() {
+        var x = document.getElementById("DBTable2");
+        var y = x.style.width;
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+            x.style.width = y
+        }
+    }
+    function toggleTableView3() {
+        var x = document.getElementById("DBTable3");
+        var y = x.style.width;
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+            x.style.width = y
+        }
+    }
+</script>
+
+<h2>Сведения об объекте</h2>
+
+<div>
+    <h4>Объект</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Наименование заказа</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование_заказа)
+        </dd>
+
+        <dt>
+            <label>Дата принятия заказа</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_принятия_заказа)
+        </dd>
+
+        <dt>
+            <label>Срок выполнения работ</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Срок_выполнения_работ)
+        </dd>
+
+        <dt>
+            <label>Вид работ</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Вид_работ)
+        </dd>
+
+        <dt>
+            <label>Статус заказа</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Статус_заказа)
+        </dd>
+
+        <dt>
+            <label>Название организации клиента</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Клиент.Название_организации)
+        </dd>
+
+    </dl>
+    <button onclick="toggleTableView1()">Сведения о материалах объекта</button>
+    <table class="table" id="DBTable1" style="display: none">
+        <tr>
+            <th>
+                Единицы измерения
+            </th>
+            <th>
+                Количество материала
+            </th>
+            <th>
+                Наименование
+            </th>
+            <th>
+                Наименование заказа
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Материал_объекта.OrderBy(s=>s.Материал.Наименование))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Единицы_измерения)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Количество_материала)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Материал.Наименование)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Объект.Наименование_заказа)
+                </td>
+            </tr>
+        }
+    </table>
+    <button onclick="toggleTableView2()">Сведения о сотрудниках и их работе на объекте</button>
+    <table class="table" id="DBTable2" style="display: none">
+        <tr>
+            <th>
+                Выполняемая работа
+            </th>
+            <th>
+                ФИО Сотрудника
+            </th>
+            <th>
+                Наименование объекта
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Работа_на_объекте.OrderBy(s=>s.Сотрудник.ФИО))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Выполняемая_работа)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Сотрудник.ФИО)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Объект.Наименование_заказа)
+                </td>
+            </tr>
+        }
+    </table>
+    <button onclick="toggleTableView3()">Сведения об этапах выполнения</button>
+    <table class="table" id="DBTable3" style="display: none">
+        <tr>
+            <th>
+                Дата выполнения
+            </th>
+            <th>
+                Название этапа
+            </th>
+            <th>
+                Наименование заказа
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Этап_выполнения.OrderBy(s=>s.Название_этапа))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Название_этапа)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Объект.Наименование_заказа)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID_объекта }) |
+    @Html.ActionLink("Обратно", "Index")
+</p>

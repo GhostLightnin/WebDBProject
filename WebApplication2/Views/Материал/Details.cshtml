@@ -1,0 +1,58 @@
+﻿@model WebApplication2.Models.Материал
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Материал</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+        <dt>
+            <label>Вид товара</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Вид_товара)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Количество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество)
+        </dd>
+
+        <dt>
+            <label>Единицы измерения</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Единицы_измерения)
+        </dd>
+
+        <dt>
+            <label>Минимальное количество</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Минимальное_количество)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID_материала }) |
+    @Html.ActionLink("Обратно", "Index")
+</p>

@@ -1,0 +1,78 @@
+﻿@model WebApplication2.Models.Закупка
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Закупка</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Общая цена</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Общая_цена)
+        </dd>
+
+        <dt>
+            <label>Дата закупки</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_закупки)
+        </dd>
+
+        <dt>
+            <label>Дата поставки</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_поставки)
+        </dd>
+
+    </dl>
+    <h3>Состав Закупки</h3>
+    <table class="table">
+        <tr>
+            <th>
+                Количество
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
+                ID Закупки
+            </th>
+            <th>
+               Наименование
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Состав_закупки)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Количество)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Цена)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Закупка.ID_закупки)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Материал.Наименование)
+                </td>
+            </tr>
+        }
+        </table>
+    </div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID_закупки }) |
+    @Html.ActionLink("Обратно", "Index")
+</p>

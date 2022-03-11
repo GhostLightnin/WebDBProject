@@ -1,0 +1,60 @@
+﻿@model WebApplication2.Models.Закупка
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Изменение</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Закупка</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID_закупки)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Общая_цена, "Общая цена", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Общая_цена, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Общая_цена, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Дата_закупки, "Дата закупки", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Дата_закупки, new { @Value = Model.Дата_закупки.ToString() , htmlAttributes = new { @class = "form-control" }})
+            @Html.ValidationMessageFor(model => model.Дата_закупки, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Дата_поставки, "Дата поставки", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Дата_поставки, new { @Value = Model.Дата_поставки.ToString(), htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Дата_поставки, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Модифицировать состав закупки", "Index", "Состав_закупки", new { usedId = Model.ID_закупки }, "");
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Сохранить" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Обратно", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

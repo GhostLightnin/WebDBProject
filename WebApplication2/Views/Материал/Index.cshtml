@@ -1,0 +1,89 @@
+﻿@model IEnumerable<WebApplication2.Models.Материал>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Материалы</h2>
+
+<p>
+    @Html.ActionLink("Добавить материал", "Create")
+</p>
+<p>
+    @Html.ActionLink("Создать отчет о недостающих материалах", "PrintToWord")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Найти по наименованию: <input type="text" name="SearchString" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+    <p>
+        Найти по количеству:<input type="number" name="SearchStringKol" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+    <p>
+        Найти по виду товара:<input type="text" name="SearchStringType" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по едиицам измерения:<input type="text" name="SearchStringIzmer" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по минимальному количеству:<input type="number" name="SearchStringMin" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Наименование", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Вид товара", "Index", new { sortOrder = ViewBag.TypeSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Количество", "Index", new { sortOrder = ViewBag.KolSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Единицы измерения", "Index", new { sortOrder = ViewBag.IzmerSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Минимальное количество", "Index", new { sortOrder = ViewBag.MinSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Наименование)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Вид_товара)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Количество)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Единицы_измерения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Минимальное_количество)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID_материала }) |
+                @Html.ActionLink("Просмотреть детали", "Details", new { id = item.ID_материала }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID_материала })
+            </td>
+        </tr>
+    }
+
+</table>

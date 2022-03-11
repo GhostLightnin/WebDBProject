@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebApplication2.Models.Сотрудник>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Сотрудники</h2>
+
+<p>
+    @Html.ActionLink("Добавить нового сотрудника", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Найти по имени: <input type="text" name="SearchStringFIO" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+    <p>
+        Найти по должности:<input type="text" name="SearchStringRole" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+    <p>
+        Найти по стажу:<input type="text" name="SearchStringTime" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по телефону:<input type="text" name="SearchStringPhone" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+    <p>
+        Найти по окладу:<input type="number" name="SearchStringOkl" id="search" />
+        <input type="submit" value="Поиск" />
+    </p>
+
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("ФИО Сотрудника", "Index", new { sortOrder = ViewBag.FIOSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Должность", "Index", new { sortOrder = ViewBag.RoleSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Стаж", "Index", new { sortOrder = ViewBag.TimeSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Телефон", "Index", new { sortOrder = ViewBag.PhoneSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Оклад", "Index", new { sortOrder = ViewBag.OklSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ФИО)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Должность)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Стаж)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Телефон)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Оклад)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID_сотрудника }) |
+                @Html.ActionLink("Просмотреть сведений", "Details", new { id = item.ID_сотрудника }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID_сотрудника })
+            </td>
+        </tr>
+    }
+
+</table>

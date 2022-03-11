@@ -1,0 +1,64 @@
+﻿@model WebApplication2.Models.Материал
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этот материал?</h3>
+<div>
+    <h4>Материал</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+        <dt>
+            <label>Вид товара</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Вид_товара)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Количество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество)
+        </dd>
+
+        <dt>
+            <label>Единицы измерения</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Единицы_измерения)
+        </dd>
+
+        <dt>
+            <label>Минимальное количество</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Минимальное_количество)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Обратно", "Index")
+        </div>
+    }
+</div>

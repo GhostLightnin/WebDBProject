@@ -1,0 +1,58 @@
+﻿@model WebApplication2.Models.Сотрудник
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Сведения</h2>
+
+<div>
+    <h4>Сотрудник</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ФИО)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ФИО)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Должность)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Должность)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Стаж)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Стаж)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Телефон)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Телефон)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Оклад)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Оклад)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID_сотрудника }) |
+    @Html.ActionLink("Обратно", "Index")
+</p>

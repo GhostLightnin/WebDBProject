@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication2.Models.Работа_на_объекте>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Работа на объекте</h2>
+
+<p>
+    @Html.ActionLink("Добавить работу на объекте", "Create", new { usedId = ViewBag.usedIParm })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Выполняемая_работа)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Объект.Наименование_заказа)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Сотрудник.ФИО)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Выполняемая_работа)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Объект.Наименование_заказа)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Сотрудник.ФИО)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Просмотреть Детали", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model WebApplication2.Models.Материал_объекта
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить это материал объекта?</h3>
+<div>
+    <h4>Материал объекта</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.Единицы_измерения, "Единицы измерения")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Единицы_измерения)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Количество_материала, "Количество материала")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество_материала)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Материал.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Материал.Наименование)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Объект.Наименование_заказа, "Наименование заказа")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Объект.Наименование_заказа)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID_объекта)
+        @Html.HiddenFor(model => model.ID_материала)
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Обратно", "Index", new { usedId = ViewBag.usedIParm })
+        </div>
+    }
+</div>

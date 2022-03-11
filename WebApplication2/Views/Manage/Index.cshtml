@@ -1,0 +1,80 @@
+﻿@model WebApplication2.Models.IndexViewModel
+@{
+    ViewBag.Title = "Управление";
+}
+
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h2>Личный кабинет</h2>
+    Ваши роли:
+    @using (Html.BeginForm())
+    {
+        if (Model.Roles.Contains("accountant"))
+        {
+            <p>
+                
+                    "Бухгалтер"
+                    Доступно: управление закупками и сотрудниками
+
+                
+            </p>
+        }
+        if (Model.Roles.Contains("manager"))
+        {
+            <p>
+               
+                    "Менеджер"
+                    Доступно: управление объектами
+               
+            </p>
+        }
+        if (Model.Roles.Contains("storage_worker"))
+        {
+            <p>
+               
+                    "Складской рабочий"
+                    Доступно: управление материалами
+                
+            </p>
+        }
+        if (Model.Roles.Contains("consultant"))
+        {
+            <p>
+                
+                    "Консультант"
+                    Доступно: Просмотр всей информации об элементах системы
+                
+            </p>
+        }
+        if (Model.Roles.Contains("admin"))
+        {
+            <p>
+                
+                    "Администратор системы"
+                    Доступно: Любые действия в системе
+                
+            </p>
+        }
+
+    }
+    <h4>Изменение параметров учетной записи</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Пароль:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Смена пароля", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Создать", "SetPassword")
+            }
+            ]
+        </dd>
+    </dl>
+</div>

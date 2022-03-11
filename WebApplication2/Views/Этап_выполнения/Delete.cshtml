@@ -1,0 +1,51 @@
+﻿@model WebApplication2.Models.Этап_выполнения
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этот этап выполнения?</h3>
+<div>
+    <h4>Этап выполнения</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Название_этапа)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Название_этапа)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Объект.Наименование_заказа)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Объект.Наименование_заказа)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID_этапа)
+        @Html.HiddenFor(model => model.ID_объекта)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Обратно", "Index", new { usedId = ViewBag.usedIParm }, "")
+        </div>
+    }
+</div>

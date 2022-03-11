@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Курсовой проект по Управлению данными</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Главная", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item dropdown navbar-inverse">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Меню
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">@Html.ActionLink("Управление закупками", "Index", "Закупка")</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">@Html.ActionLink("Работа с клиентской базой", "Index", "Клиент")</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">@Html.ActionLink("Управление объектами", "Index", "Объект")</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">@Html.ActionLink("Управление материалами", "Index", "Материал")</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">@Html.ActionLink("Работа с сотрудниками", "Index", "Сотрудник")</a>
+
+                        </div>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        @Scripts.Render("~/bundles/jquery")
+        <!--стили jquery ui-->
+        @Styles.Render("~/Content/themes/base/css")
+        <!--сама библиотека jquey ui-->
+        @Scripts.Render("~/bundles/jqueryui")
+        @RenderSection("scripts", required: false)
+        <!--если браузер не создает специального поля для date, то добавляем datepicker-->
+        <script type="text/javascript">
+            $(function () {
+                if (!Modernizr.inputtypes.date) {
+                    $(function () {
+                        $("input[type='date']")
+                            .datepicker({ dateFormat: 'mm/dd/yy' })
+                            .get(0).setAttribute("type", "text");
+                    })
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".getdate").each(function () {
+                    $(this).datepicker();
+                });
+            });
+        </script>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Бабушкин Денис</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    
+</body>
+</html>
